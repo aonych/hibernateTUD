@@ -111,4 +111,29 @@ public class MovieManagerTest {
 		
 	}
 	
+	@Test
+	public void checkGetAll(){
+		
+		Movie movie1 = new Movie(TITLE_1, COUNTRY_1,PRODUCTION_1,YEAR_1);
+		Movie movie2 = new Movie(TITLE_2, COUNTRY_2,PRODUCTION_2,YEAR_2);
+		
+		moviesManager.addMovie(movie1);
+		moviesManager.addMovie(movie2);
+		
+		List<Movie> movies = moviesManager.getAllMovies();		
+		
+		Movie movieRetrieved = movies.get(0);
+		assertEquals(TITLE_1, movieRetrieved.getTitle());
+		assertEquals(COUNTRY_1, movieRetrieved.getCountry());
+		assertEquals(PRODUCTION_1, movieRetrieved.getProduction());
+		assertEquals(YEAR_1, movieRetrieved.getYear());
+		
+		movieRetrieved = movies.get(1);
+		assertEquals(TITLE_2, movieRetrieved.getTitle());
+		assertEquals(COUNTRY_2, movieRetrieved.getCountry());
+		assertEquals(PRODUCTION_2, movieRetrieved.getProduction());
+		assertEquals(YEAR_2, movieRetrieved.getYear());
+		
+	}
+	
 }

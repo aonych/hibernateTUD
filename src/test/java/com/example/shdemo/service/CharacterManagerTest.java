@@ -100,4 +100,27 @@ public class CharacterManagerTest {
 		assertEquals(TYPE_3, characterRetrieved.getType());
 		
 	}
+	
+	@Test
+	public void checkGetAll(){
+		
+		Character character1 = new Character(NAME_1,QUALITY_1,TYPE_1);
+		Character character2 = new Character(NAME_2,QUALITY_2,TYPE_2);
+		
+		moviesManager.addCharacter(character1);
+		moviesManager.addCharacter(character2);
+
+		List<Character> characters = moviesManager.getAllCharacters();		
+		
+		Character characterRetrieved = characters.get(0);
+		assertEquals(NAME_1, characterRetrieved.getName());
+		assertEquals(QUALITY_1, characterRetrieved.getQuality());
+		assertEquals(TYPE_1, characterRetrieved.getType());
+		
+		characterRetrieved = characters.get(1);
+		assertEquals(NAME_2, characterRetrieved.getName());
+		assertEquals(QUALITY_2, characterRetrieved.getQuality());
+		assertEquals(TYPE_2, characterRetrieved.getType());
+		
+	}
 }
