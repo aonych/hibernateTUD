@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.048" errors="0" skipped="0" tests="3" name="com.example.shdemo.service.CharacterManagerTest">
+<testsuite failures="0" time="0.08" errors="0" skipped="0" tests="5" name="com.example.shdemo.service.CharacterManagerTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/opt/devel/jdk1.7.0_40/jre/lib/i386"/>
@@ -59,7 +59,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.02" classname="com.example.shdemo.service.CharacterManagerTest" name="checkAdd"/>
-  <testcase time="0.009" classname="com.example.shdemo.service.CharacterManagerTest" name="checkEdit"/>
-  <testcase time="0.019" classname="com.example.shdemo.service.CharacterManagerTest" name="checkDelete"/>
+  <testcase time="0.027" classname="com.example.shdemo.service.CharacterManagerTest" name="checkEdit"/>
+  <testcase time="0.016" classname="com.example.shdemo.service.CharacterManagerTest" name="checkGetAll"/>
+  <testcase time="0.015" classname="com.example.shdemo.service.CharacterManagerTest" name="checkGetByCountry"/>
+  <testcase time="0.013" classname="com.example.shdemo.service.CharacterManagerTest" name="checkAdd"/>
+  <testcase time="0.009" classname="com.example.shdemo.service.CharacterManagerTest" name="checkDelete"/>
 </testsuite>

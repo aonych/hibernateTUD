@@ -25,15 +25,15 @@ public class CharacterManagerTest {
 	
 	private final String NAME_1 = "Elsa"; 
 	private final String QUALITY_1 = "panowanie nad zima"; 
-	private final String TYPE_1 = "Kobieta"; 
+	private final String TYPE_1 = "kobieta"; 
 	
 	private final String NAME_2 = "Krol Julian"; 
 	private final String QUALITY_2 = "doskonalosc"; 
-	private final String TYPE_2 = "Lemur";	
+	private final String TYPE_2 = "lemur";	
 	
-	private final String NAME_3 = "Zygzak McQueen"; 
-	private final String QUALITY_3 = "szybkosc"; 
-	private final String TYPE_3 = "samochod";	
+	private final String NAME_3 = "Bella"; 
+	private final String QUALITY_3 = "inteligencja"; 
+	private final String TYPE_3 = "kobieta";	
 	
 	@Test
 	public void checkAdd() {
@@ -122,5 +122,33 @@ public class CharacterManagerTest {
 		assertEquals(QUALITY_2, characterRetrieved.getQuality());
 		assertEquals(TYPE_2, characterRetrieved.getType());
 		
+	}
+	
+	@Test
+	public void checkGetByCountry(){
+		
+		Character character1 = new Character(NAME_1,QUALITY_1,TYPE_1);
+		Character character2 = new Character(NAME_2,QUALITY_2,TYPE_2);
+		Character character3 = new Character(NAME_3,QUALITY_3,TYPE_3);
+		
+		moviesManager.addCharacter(character1);
+		moviesManager.addCharacter(character2);
+		moviesManager.addCharacter(character3);
+		
+		List<Character> characters = moviesManager.getCharacterByType(TYPE_1);
+		int count = moviesManager.getCharacterByType(TYPE_1).size();
+		
+		Character characterRetrieved;
+		assertEquals(count,2);
+		
+		characterRetrieved = moviesManager.getCharacter(characters.get(0).getId());
+		assertEquals(NAME_1, characterRetrieved.getName());
+		assertEquals(QUALITY_1, characterRetrieved.getQuality());
+		assertEquals(TYPE_1, characterRetrieved.getType());
+		
+		characterRetrieved = moviesManager.getCharacter(characters.get(1).getId());
+		assertEquals(NAME_3, characterRetrieved.getName());
+		assertEquals(QUALITY_3, characterRetrieved.getQuality());
+		assertEquals(TYPE_3, characterRetrieved.getType());
 	}
 }
