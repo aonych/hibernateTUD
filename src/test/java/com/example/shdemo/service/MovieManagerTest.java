@@ -35,6 +35,11 @@ public class MovieManagerTest {
 	private final String PRODUCTION_2 = "DreamWorks"; 
 	private final int YEAR_2 = 2005;
 	
+	private final String TITLE_3 = "Cars";
+	private final String COUNTRY_3 = "USA"; 
+	private final String PRODUCTION_3 = "Pixar Animation Studios"; 
+	private final int YEAR_3 = 2006;
+	
 	@Test
 	public void checkAdd(){
 		
@@ -82,6 +87,27 @@ public class MovieManagerTest {
 		assertEquals(PRODUCTION_2, movieRetrieved.getProduction());
 		assertEquals(YEAR_2, movieRetrieved.getYear());
 		assertEquals(count-1, movies.size());
+		
+	}
+	
+	@Test
+	public void checkEdit(){
+		
+		Movie movie1 = new Movie(TITLE_1, COUNTRY_1,PRODUCTION_1,YEAR_1);
+		Movie movie2 = new Movie(TITLE_2, COUNTRY_2,PRODUCTION_2,YEAR_2);
+		Movie movie_edit = new Movie(TITLE_3, COUNTRY_3,PRODUCTION_3,YEAR_3);
+		
+		moviesManager.addMovie(movie1);
+		moviesManager.addMovie(movie2);
+		moviesManager.editMovie(movie1, movie_edit);
+		
+		List<Movie> movies = moviesManager.getAllMovies();
+		
+		Movie movieRetrieved = moviesManager.getMovie(movies.get(0).getId());
+		assertEquals(TITLE_3, movieRetrieved.getTitle());
+		assertEquals(COUNTRY_3, movieRetrieved.getCountry());
+		assertEquals(PRODUCTION_3, movieRetrieved.getProduction());
+		assertEquals(YEAR_3, movieRetrieved.getYear());
 		
 	}
 	

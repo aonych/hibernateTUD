@@ -31,6 +31,10 @@ public class CharacterManagerTest {
 	private final String QUALITY_2 = "doskonalosc"; 
 	private final String TYPE_2 = "Lemur";	
 	
+	private final String NAME_3 = "Zygzak McQueen"; 
+	private final String QUALITY_3 = "szybkosc"; 
+	private final String TYPE_3 = "samochod";	
+	
 	@Test
 	public void checkAdd() {
 
@@ -75,5 +79,25 @@ public class CharacterManagerTest {
 		assertEquals(QUALITY_2, characterRetrieved.getQuality());
 		assertEquals(TYPE_2, characterRetrieved.getType());
 		assertEquals(count-1, characters.size());
+	}
+	
+	@Test
+	public void checkEdit(){
+		
+		Character character1 = new Character(NAME_1, QUALITY_1, TYPE_1);
+		Character character2 = new Character(NAME_2, QUALITY_2, TYPE_2);
+		Character character_edit = new Character(NAME_3, QUALITY_3, TYPE_3);
+		
+		moviesManager.addCharacter(character1);
+		moviesManager.addCharacter(character2);
+		moviesManager.editCharacter(character1, character_edit);
+		
+		List<Character> characters = moviesManager.getAllCharacters();
+		
+		Character characterRetrieved = moviesManager.getCharacter(characters.get(0).getId());
+		assertEquals(NAME_3, characterRetrieved.getName());
+		assertEquals(QUALITY_3, characterRetrieved.getQuality());
+		assertEquals(TYPE_3, characterRetrieved.getType());
+		
 	}
 }
