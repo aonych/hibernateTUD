@@ -13,7 +13,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.shdemo.domain.*;
-
 import com.example.shdemo.service.MoviesManager;
 
 
@@ -61,5 +60,29 @@ public class MovieManagerTest {
 		assertEquals(YEAR_2, movieRetrieved.getYear());
 	
 	}	
+	
+	@Test
+	public void checkDelete(){
+		
+		Movie movie1 = new Movie(TITLE_1, COUNTRY_1,PRODUCTION_1,YEAR_1);
+		Movie movie2 = new Movie(TITLE_2, COUNTRY_2,PRODUCTION_2,YEAR_2);
+		
+		moviesManager.addMovie(movie1);
+		moviesManager.addMovie(movie2);
+		
+		int count = moviesManager.getAllMovies().size();
+		
+		moviesManager.deleteMovie(movie1);
+		
+		List<Movie> movies = moviesManager.getAllMovies();
+	
+		Movie movieRetrieved = moviesManager.getMovie(movies.get(0).getId());	
+		assertEquals(TITLE_2, movieRetrieved.getTitle());
+		assertEquals(COUNTRY_2, movieRetrieved.getCountry());
+		assertEquals(PRODUCTION_2, movieRetrieved.getProduction());
+		assertEquals(YEAR_2, movieRetrieved.getYear());
+		assertEquals(count-1, movies.size());
+		
+	}
 	
 }

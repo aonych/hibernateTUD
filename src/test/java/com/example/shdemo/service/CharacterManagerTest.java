@@ -54,4 +54,26 @@ public class CharacterManagerTest {
 		assertEquals(TYPE_2, characterRetrieved.getType());
 
 	}
+	
+	@Test
+	public void checkDelete(){
+		
+		Character character1 = new Character(NAME_1, QUALITY_1, TYPE_1);
+		Character character2 = new Character(NAME_2, QUALITY_2, TYPE_2);
+		
+		moviesManager.addCharacter(character1);
+		moviesManager.addCharacter(character2);
+		
+		int count = moviesManager.getAllCharacters().size();
+		
+		moviesManager.deleteCharacter(character1);
+		
+		List<Character> characters = moviesManager.getAllCharacters();
+		
+		Character characterRetrieved = moviesManager.getCharacter(characters.get(0).getId());
+		assertEquals(NAME_2, characterRetrieved.getName());
+		assertEquals(QUALITY_2, characterRetrieved.getQuality());
+		assertEquals(TYPE_2, characterRetrieved.getType());
+		assertEquals(count-1, characters.size());
+	}
 }
