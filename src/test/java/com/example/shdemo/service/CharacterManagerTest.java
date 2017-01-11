@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class CharacterManagerTest {
 
 	@Autowired
 	MoviesManager moviesManager;
+	
+	public static int nr = -1;	
 	
 	private final String NAME_1 = "Elsa"; 
 	private final String QUALITY_1 = "panowanie nad zima"; 
@@ -50,6 +54,34 @@ public class CharacterManagerTest {
 	private final String COUNTRY_2 = "USA"; 
 	private final String PRODUCTION_2 = "DreamWorks"; 
 	private final int YEAR_2 = 2005;
+	
+	@Before
+	public void BInfo() {
+		String[] names = new String[6];
+		names[0] = "dodawania";
+		names[1] = "usuwania";
+		names[2] = "edycji";
+		names[3] = "pobierania wszystkich rekordow";
+		names[4] = "pobierania po typie";
+		names[5] = "pobierania po filmie";
+		
+		System.out.println("Rozpoczęcie testu "+ names[++nr]+ "\n");
+	}
+	
+	@After
+	public void AInfo() {
+		String[] names = new String[6];
+		names[0] = "dodawania";
+		names[1] = "usuwania";
+		names[2] = "edycji";
+		names[3] = "pobierania wszystkich rekordow";
+		names[4] = "pobierania po typie";
+		names[5] = "pobierania po filmie";
+
+		System.out.println("Zakończenie testu "+ names[nr] +"\n");
+	}
+	
+	
 	
 	@Test
 	public void checkAdd() {
@@ -149,7 +181,7 @@ public class CharacterManagerTest {
 	}
 	
 	@Test
-	public void checkGetByCountry(){
+	public void checkGetByType(){
 		
 		Character character1 = new Character(NAME_1,QUALITY_1,TYPE_1);
 		Character character2 = new Character(NAME_2,QUALITY_2,TYPE_2);

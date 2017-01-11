@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class MovieManagerTest {
 	
 	@Autowired
 	MoviesManager moviesManager;
+	
+	public static int nr = -1;	
 	
 	private final String TITLE_1 = "Frozen"; 
 	private final String COUNTRY_1 = "USA"; 
@@ -58,6 +62,32 @@ public class MovieManagerTest {
 	private final String NAME_3 = "Kowalski"; 
 	private final String QUALITY_3 = "inteligencja"; 
 	private final String TYPE_3 = "pingwin";
+	
+	@Before
+	public void BInfo() {
+		String[] names = new String[6];
+		names[0] = "dodawania";
+		names[1] = "usuwania";
+		names[2] = "edycji";
+		names[3] = "pobierania wszystkich rekordow";
+		names[4] = "pobierania po kraju";
+		names[5] = "usuwania z postaciami";
+		
+		System.out.println("Rozpoczęcie testu "+ names[++nr]+ "\n");
+	}
+	
+	@After
+	public void AInfo() {
+		String[] names = new String[6];
+		names[0] = "dodawania";
+		names[1] = "usuwania";
+		names[2] = "edycji";
+		names[3] = "pobierania wszystkich rekordow";
+		names[4] = "pobierania po kraju";
+		names[5] = "usuwania z postaciami";
+
+		System.out.println("Zakończenie testu "+ names[nr] +"\n");
+	}
 	
 	@Test
 	public void checkAdd(){
@@ -194,41 +224,6 @@ public class MovieManagerTest {
 	
 	@Test
 	public void checkDeleteWithCharacters() {
-		
-		/*Character character1 = new Character(NAME_1,QUALITY_1,TYPE_1);
-		Character character2 = new Character(NAME_2,QUALITY_2,TYPE_2);
-		
-		moviesManager.addCharacter(character1);
-		moviesManager.addCharacter(character2);
-		int countCharacters = moviesManager.getAllCharacters().size();
-		
-		List<Character> charactersList = Arrays.asList(moviesManager.getAllCharacters().get(0));	
-		Movie movie1 = new Movie(TITLE_1, COUNTRY_1,PRODUCTION_1,YEAR_1,charactersList);
-		charactersList = Arrays.asList(moviesManager.getAllCharacters().get(1));
-		Movie movie2 = new Movie(TITLE_2, COUNTRY_2,PRODUCTION_2,YEAR_2,charactersList);
-		
-		moviesManager.addMovie(movie1);
-		moviesManager.addMovie(movie2);
-		int countMovies = moviesManager.getAllMovies().size();
-		
-		moviesManager.deleteMovie(movie1);
-		
-		List<Movie> movies = moviesManager.getAllMovies();
-		
-		Movie movieRetrieved = moviesManager.getMovie(movies.get(0).getId());	
-		assertEquals(TITLE_2, movieRetrieved.getTitle());
-		assertEquals(COUNTRY_2, movieRetrieved.getCountry());
-		assertEquals(PRODUCTION_2, movieRetrieved.getProduction());
-		assertEquals(YEAR_2, movieRetrieved.getYear());
-		assertEquals(countMovies-1, movies.size());
-		
-		List<Character> characters = moviesManager.getAllCharacters();
-		
-		Character characterRetrieved = moviesManager.getCharacter(characters.get(0).getId());
-		assertEquals(NAME_2,characterRetrieved.getName());
-		assertEquals(QUALITY_2,characterRetrieved.getQuality());
-		assertEquals(TYPE_2,characterRetrieved.getType());
-		assertEquals(countCharacters-1, characters.size());*/
 		
 		Character character1 = new Character(NAME_1,QUALITY_1,TYPE_1);
 		Character character2 = new Character(NAME_2,QUALITY_2,TYPE_2);
