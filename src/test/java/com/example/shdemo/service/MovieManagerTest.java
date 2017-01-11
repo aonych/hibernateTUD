@@ -2,6 +2,7 @@ package com.example.shdemo.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -13,6 +14,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.shdemo.domain.*;
+import com.example.shdemo.domain.Character;
 import com.example.shdemo.service.MoviesManager;
 
 
@@ -44,6 +46,18 @@ public class MovieManagerTest {
 	private final String COUNTRY_4 = "USA"; 
 	private final String PRODUCTION_4 = "DreamWorks"; 
 	private final int YEAR_4 = 2005;
+	
+	private final String NAME_1 = "Elsa"; 
+	private final String QUALITY_1 = "panowanie nad zima"; 
+	private final String TYPE_1 = "kobieta"; 
+	
+	private final String NAME_2 = "Olaf"; 
+	private final String QUALITY_2 = "umiejetnosc mowienia"; 
+	private final String TYPE_2 = "balwan";	
+	
+	private final String NAME_3 = "Kowalski"; 
+	private final String QUALITY_3 = "inteligencja"; 
+	private final String TYPE_3 = "pingwin";
 	
 	@Test
 	public void checkAdd(){
@@ -114,6 +128,12 @@ public class MovieManagerTest {
 		assertEquals(PRODUCTION_3, movieRetrieved.getProduction());
 		assertEquals(YEAR_3, movieRetrieved.getYear());
 		
+		movieRetrieved = moviesManager.getMovie(movies.get(1).getId());
+		assertEquals(TITLE_2, movieRetrieved.getTitle());
+		assertEquals(COUNTRY_2, movieRetrieved.getCountry());
+		assertEquals(PRODUCTION_2, movieRetrieved.getProduction());
+		assertEquals(YEAR_2, movieRetrieved.getYear());
+		
 	}
 	
 	@Test
@@ -170,6 +190,85 @@ public class MovieManagerTest {
 		assertEquals(COUNTRY_3, movieRetrieved.getCountry());
 		assertEquals(PRODUCTION_3, movieRetrieved.getProduction());
 		assertEquals(YEAR_3, movieRetrieved.getYear());
+	}
+	
+	@Test
+	public void checkDeleteWithCharacters() {
+		
+		/*Character character1 = new Character(NAME_1,QUALITY_1,TYPE_1);
+		Character character2 = new Character(NAME_2,QUALITY_2,TYPE_2);
+		
+		moviesManager.addCharacter(character1);
+		moviesManager.addCharacter(character2);
+		int countCharacters = moviesManager.getAllCharacters().size();
+		
+		List<Character> charactersList = Arrays.asList(moviesManager.getAllCharacters().get(0));	
+		Movie movie1 = new Movie(TITLE_1, COUNTRY_1,PRODUCTION_1,YEAR_1,charactersList);
+		charactersList = Arrays.asList(moviesManager.getAllCharacters().get(1));
+		Movie movie2 = new Movie(TITLE_2, COUNTRY_2,PRODUCTION_2,YEAR_2,charactersList);
+		
+		moviesManager.addMovie(movie1);
+		moviesManager.addMovie(movie2);
+		int countMovies = moviesManager.getAllMovies().size();
+		
+		moviesManager.deleteMovie(movie1);
+		
+		List<Movie> movies = moviesManager.getAllMovies();
+		
+		Movie movieRetrieved = moviesManager.getMovie(movies.get(0).getId());	
+		assertEquals(TITLE_2, movieRetrieved.getTitle());
+		assertEquals(COUNTRY_2, movieRetrieved.getCountry());
+		assertEquals(PRODUCTION_2, movieRetrieved.getProduction());
+		assertEquals(YEAR_2, movieRetrieved.getYear());
+		assertEquals(countMovies-1, movies.size());
+		
+		List<Character> characters = moviesManager.getAllCharacters();
+		
+		Character characterRetrieved = moviesManager.getCharacter(characters.get(0).getId());
+		assertEquals(NAME_2,characterRetrieved.getName());
+		assertEquals(QUALITY_2,characterRetrieved.getQuality());
+		assertEquals(TYPE_2,characterRetrieved.getType());
+		assertEquals(countCharacters-1, characters.size());*/
+		
+		Character character1 = new Character(NAME_1,QUALITY_1,TYPE_1);
+		Character character2 = new Character(NAME_2,QUALITY_2,TYPE_2);
+		Character character3 = new Character(NAME_3,QUALITY_3,TYPE_3);
+		
+		
+		moviesManager.addCharacter(character1);
+		moviesManager.addCharacter(character2);
+		List<Character> characters = moviesManager.getAllCharacters();		
+		
+		moviesManager.addCharacter(character3);
+		List<Character> charactersMadagaskar = Arrays.asList(moviesManager.getAllCharacters().get(2));	
+		Movie movie1 = new Movie(TITLE_1, COUNTRY_1,PRODUCTION_1,YEAR_1,characters);
+		Movie movie2 = new Movie(TITLE_2, COUNTRY_2,PRODUCTION_2,YEAR_2,charactersMadagaskar);		
+		moviesManager.addMovie(movie1);
+		moviesManager.addMovie(movie2);
+		
+		int countCharacters = moviesManager.getAllCharacters().size();
+		int countMovies = moviesManager.getAllMovies().size();
+		
+		moviesManager.deleteMovie(movie1);
+		
+		List<Movie> movies = moviesManager.getAllMovies();
+		
+		Movie movieRetrieved = moviesManager.getMovie(movies.get(0).getId());	
+		assertEquals(TITLE_2, movieRetrieved.getTitle());
+		assertEquals(COUNTRY_2, movieRetrieved.getCountry());
+		assertEquals(PRODUCTION_2, movieRetrieved.getProduction());
+		assertEquals(YEAR_2, movieRetrieved.getYear());
+		assertEquals(countMovies-1, movies.size());
+		
+		characters = moviesManager.getAllCharacters();
+		
+		Character characterRetrieved = moviesManager.getCharacter(characters.get(0).getId());
+		assertEquals(NAME_3,characterRetrieved.getName());
+		assertEquals(QUALITY_3,characterRetrieved.getQuality());
+		assertEquals(TYPE_3,characterRetrieved.getType());
+		assertEquals(countCharacters-2, characters.size());
+		
+		
 	}
 	
 	

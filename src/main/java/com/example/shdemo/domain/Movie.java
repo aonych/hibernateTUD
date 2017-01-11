@@ -42,6 +42,15 @@ public class Movie {
 		this.year = year;
 	}
 	
+	public Movie(String title, String country, String production, int year, List<Character> characters){
+		super();
+		this.title = title;
+		this.country = country;
+		this.production = production;
+		this.year = year;
+		this.characters = characters;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public long getId() {
